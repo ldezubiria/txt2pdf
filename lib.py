@@ -1,6 +1,6 @@
 
 import re
-
+import sqlite3
 
 
 def liqu_read_cedula(source_d):
@@ -82,17 +82,22 @@ def volantes_pdf(source_lines, pdf_file):
     pdf.output(pdf_file, 'F')
 
 
-def read_cedula(source_d):
+def read_cedula(source_d, output='single'):
     """extract cedula from list of lines output is str"""
     import re
-    y = ''
+    xy = []
     for xx in source_d:
         p = re.findall('^([A0-9].+?) ', xx)
         if not p:
             continue
         else:
-            y = str(p[0].strip('A'))
-    return y
+            if output == 'single':
+                y = str(p[0].strip('A'))
+                return y
+            else:
+                xy.append(p[0].strip('A'))
+    return xy
+
 
 def doVolantes(open_file_path,save_file_path):
     # Read input txt File
@@ -123,10 +128,56 @@ def doVolantes(open_file_path,save_file_path):
         if not pp:
             doc.append(line)
         else:
-            filename = read_cedula(doc) + ".pdf"
+            filename = read_cedula(doc,output='single') + ".pdf"
             new_pdf = (f'{save_file_path}/{filename}')
             volantes_pdf(doc, new_pdf)
             doc = []
             out.append(filename)
             print(filename)
     return out
+
+
+def read_nombres(source_d):
+    """extract nombres from list of lines. output is a list"""
+    import re
+    xy = []
+    for t in range(len(source_d)):
+        p = re.findall('^[A0-9].+?([A-Z][A-Z].+)\$', source_d[t])
+        if not p:
+            continue
+        else:
+            xy.append(p[0].strip())
+    return xy
+
+
+def read_fecha(source_d):
+    """Extrae la fecha de la nomina de los volantes"""
+    import re
+    for x in range(len(source_d)):
+        p = re.findall('(NOMINA.[0-9].+?20[0-9][0-9])', source_d[x])
+        q = re.findall('(LIQ.PRIMAS.+20[0-9][0-9] )', source_d[x])
+        r = re.findall('(PRIMA.EXTRALEGAL.LAUDO.+20[0-9][0-9] )', source_d[x])
+        s = re.findall('(LIQ.INTERES.*CESANTIAS.+20[0-9][0-9] )', source_d[x])
+        if not p and not q and not r and not s:
+            continue
+        else:
+            if not p and not r and not s:
+                return q[0]
+            elif not p and not q and not s:
+                return r[0]
+            elif not p and not q and not r:
+                return s[0]
+            else:
+                return p[0]
+
+
+def read_empresa(source_d):
+    """Selecciona la tabla donde se debe consultar o agregar los registros"""
+    for z in source_d:
+        if 'SERVICIOS INDUSTRIALES Y PORTUARIOS SAS' in z:
+            emp = 'personal_sp'
+            return emp
+        elif 'SIPORT TECNICO SAS' in z:
+            emp = 'personal_st'
+            return emp
+    return -1
