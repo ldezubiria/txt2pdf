@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main_widget</class>
+ <widget class="QWidget" name="main_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1920</width>
+    <height>1080</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>TXT a PDF v1.0</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(180, 208, 255);
+font: 13pt &quot;Verdana&quot;;
+
+</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>150</y>
+     <width>561</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 3px solid white;
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLineEdit" name="lineEdit_pdf_path">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>401</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 5px;
+font: 13pt &quot;Verdana&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Selecciona una carpeta de destino...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_txt_file">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 13pt &quot;Verdana&quot;;
+font-weight: bold;
+border: none</string>
+    </property>
+    <property name="text">
+     <string>Archivo de TXT</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_txt_path">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>401</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 5px;
+font: 13pt &quot;Verdana&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Selecciona un archivo TXT...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_pdf_path">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>140</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+                                    background-color: rgb(115, 124, 255);
+                                    border-width: 1px;
+                                    border-radius: 15px;
+                                    font: 75 13pt &quot;Verdana&quot;;
+                                    border: none;
+                                        }
+                    QPushButton:hover {
+                                    background-color: rgb(104, 111, 231);
+                                    }
+                    QPushButton:pressed {
+                                    color: white;
+                                    background-color: rgb(79, 82, 177);}
+</string>
+    </property>
+    <property name="text">
+     <string>Guardar en...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_txt">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>50</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+                                    background-color: rgb(115, 124, 255);
+                                    border-width: 1px;
+                                    border-radius: 15px;
+                                    font: 75 13pt &quot;Verdana&quot;;
+                                    border: none;
+                                        }
+                    QPushButton:hover {
+                                    background-color: rgb(104, 111, 231);
+                                    }
+                    QPushButton:pressed {
+                                    color: white;
+                                    background-color: rgb(79, 82, 177);}
+</string>
+    </property>
+    <property name="text">
+     <string>Seleccionar...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pdf_pfile">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>120</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 13pt &quot;Verdana&quot;;
+font-weight: bold;
+border: none</string>
+    </property>
+    <property name="text">
+     <string>Archivo PDF</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="group_type">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>561</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1920</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 13pt &quot;Verdana&quot;;
+font-weight: bold;
+border: 3px solid white;
+
+</string>
+   </property>
+   <property name="title">
+    <string>Convertir a PDF...</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <widget class="QRadioButton" name="radioButton_liq">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>40</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 13pt &quot;Verdana&quot;;
+border: none;
+</string>
+    </property>
+    <property name="text">
+     <string>Liquidaciones</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_vol">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 13pt &quot;Verdana&quot;;
+border: none;
+
+</string>
+    </property>
+    <property name="text">
+     <string>Volantes de Nomina</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>370</y>
+     <width>561</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="pushButton_convert">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>150</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+                                    background-color: rgb(255, 138, 36);
+                                    border-width: 5px;
+                                    border-radius: 15px;
+                                    font: 75 15pt &quot;Verdana&quot;;
+                                    border-color: black;
+                        			}
+QPushButton:hover {
+                                    background-color: rgb(232, 127, 32);
+								border: 1px;
+								border-color: black; 
+                                    }
+QPushButton:pressed {
+                                    color: white;
+                                    background-color: rgb(197, 108, 27);
+								border-width: 1px;
+								border-color: white;
+								}
+QPushButton:disabled {
+								opacity: 50;
+								}</string>
+      </property>
+      <property name="text">
+       <string>Convertir</string>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPlainTextEdit" name="textBox1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>470</y>
+     <width>561</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res1.qrc"/>
+ </resources>
+ <connections/>
+</ui>

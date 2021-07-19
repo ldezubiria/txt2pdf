@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="logo">
+    <file>logo-sipor-600px-opaco.png</file>
+    <file>logo-sipor-600px.png</file>
+    <file>logo sipor.png</file>
+  </qresource>
+</RCC>
