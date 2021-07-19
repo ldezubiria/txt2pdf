@@ -32,7 +32,7 @@ def liquidaciones_pdf(source, pdf_file_name):
     pdf.output(pdf_file_name, 'F')
 
 
-def doLiquidaciones(source_path, dest_path):
+def doPDF(source_path, dest_path):
     from pathlib import Path
     with open(source_path, 'r', encoding="latin-1") as original:
         archivo_txt = original.readlines()

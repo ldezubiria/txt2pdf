@@ -45,8 +45,8 @@ class mainWindow(QtWidgets.QMainWindow):
         if self.ui.radioButton_liq.isChecked():
             if path.isdir(pdf_path) is True and path.isfile(txt_path) is True:
                 self.ui.textBox1.clear()
-                from lib import doLiquidaciones
-                output = doLiquidaciones(txt_path, pdf_path)
+                from lib import doPDF
+                output = doPDF(txt_path,pdf_path)
                 for i in output:
                     self.ui.textBox1.appendPlainText(i)
 
