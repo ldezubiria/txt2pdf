@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>580</width>
-    <height>735</height>
+    <width>572</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -60,7 +60,7 @@
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 border-radius: 5px;
-font: 13pt &quot;Verdana&quot;;</string>
+font: 75 8pt &quot;Verdana&quot;;</string>
      </property>
      <property name="text">
       <string>Selecciona una carpeta de destino...</string>
@@ -76,7 +76,7 @@ font: 13pt &quot;Verdana&quot;;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 13pt &quot;Verdana&quot;;
+      <string notr="true">font: 8pt &quot;Verdana&quot;;
 font-weight: bold;
 border: none</string>
      </property>
@@ -96,7 +96,7 @@ border: none</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 border-radius: 5px;
-font: 13pt &quot;Verdana&quot;;</string>
+font: 75 8pt &quot;Verdana&quot;;</string>
      </property>
      <property name="text">
       <string>Selecciona un archivo TXT...</string>
@@ -116,7 +116,7 @@ font: 13pt &quot;Verdana&quot;;</string>
                                     background-color: rgb(115, 124, 255);
                                     border-width: 1px;
                                     border-radius: 15px;
-                                    font: 75 13pt &quot;Verdana&quot;;
+                                    font: 75 8pt &quot;Verdana&quot;;
                                     border: none;
                                         }
                     QPushButton:hover {
@@ -145,7 +145,7 @@ font: 13pt &quot;Verdana&quot;;</string>
                                     background-color: rgb(115, 124, 255);
                                     border-width: 1px;
                                     border-radius: 15px;
-                                    font: 75 13pt &quot;Verdana&quot;;
+                                    font: 75 8pt &quot;Verdana&quot;;
                                     border: none;
                                         }
                     QPushButton:hover {
@@ -170,7 +170,7 @@ font: 13pt &quot;Verdana&quot;;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 13pt &quot;Verdana&quot;;
+      <string notr="true">font: 75 8pt &quot;Verdana&quot;;
 font-weight: bold;
 border: none</string>
      </property>
@@ -189,7 +189,8 @@ border: none</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 8pt &quot;Verdana&quot;;</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="group_type">
@@ -220,7 +221,7 @@ border: none</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 13pt &quot;Verdana&quot;;
+     <string notr="true">font: 75 9pt &quot;Verdana&quot;;
 font-weight: bold;
 border: 3px solid white;
 
@@ -242,7 +243,7 @@ border: 3px solid white;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 13pt &quot;Verdana&quot;;
+      <string notr="true">font: 75 8pt &quot;Verdana&quot;;
 border: none;
 </string>
      </property>
@@ -260,7 +261,7 @@ border: none;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 13pt &quot;Verdana&quot;;
+      <string notr="true">font: 75 8pt &quot;Verdana&quot;;
 border: none;
 
 </string>
@@ -317,7 +318,7 @@ border: none;
                                     background-color: rgb(255, 138, 36);
                                     border-width: 5px;
                                     border-radius: 15px;
-                                    font: 75 15pt &quot;Verdana&quot;;
+                                    font: 75 12pt &quot;Verdana&quot;;
                                     border-color: black;
                         			}
 QPushButton:hover {
@@ -352,7 +353,7 @@ QPushButton:disabled {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>580</width>
+     <width>572</width>
      <height>22</height>
     </rect>
    </property>
@@ -396,7 +397,7 @@ QPushButton:disabled {
   </action>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="res1.qrc"/>
  </resources>
  <connections/>
 </ui>

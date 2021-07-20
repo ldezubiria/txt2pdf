@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(580, 735)
+        MainWindow.resize(572, 712)
         MainWindow.setMaximumSize(QtCore.QSize(580, 735))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
@@ -34,11 +34,11 @@ class Ui_MainWindow(object):
         self.lineEdit_pdf_path.setGeometry(QtCore.QRect(20, 110, 401, 31))
         self.lineEdit_pdf_path.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 5px;\n"
-"font: 13pt \"Verdana\";")
+"font: 75 8pt \"Verdana\";")
         self.lineEdit_pdf_path.setObjectName("lineEdit_pdf_path")
         self.label_txt_file = QtWidgets.QLabel(self.frame)
         self.label_txt_file.setGeometry(QtCore.QRect(20, 20, 121, 16))
-        self.label_txt_file.setStyleSheet("font: 13pt \"Verdana\";\n"
+        self.label_txt_file.setStyleSheet("font: 8pt \"Verdana\";\n"
 "font-weight: bold;\n"
 "border: none")
         self.label_txt_file.setObjectName("label_txt_file")
@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
         self.lineEdit_txt_path.setGeometry(QtCore.QRect(20, 40, 401, 31))
         self.lineEdit_txt_path.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 5px;\n"
-"font: 13pt \"Verdana\";")
+"font: 75 8pt \"Verdana\";")
         self.lineEdit_txt_path.setObjectName("lineEdit_txt_path")
         self.pushButton_pdf_path = QtWidgets.QPushButton(self.frame)
         self.pushButton_pdf_path.setGeometry(QtCore.QRect(440, 110, 101, 31))
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
 "                                    background-color: rgb(115, 124, 255);\n"
 "                                    border-width: 1px;\n"
 "                                    border-radius: 15px;\n"
-"                                    font: 75 13pt \"Verdana\";\n"
+"                                    font: 75 8pt \"Verdana\";\n"
 "                                    border: none;\n"
 "                                        }\n"
 "                    QPushButton:hover {\n"
@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
 "                                    background-color: rgb(115, 124, 255);\n"
 "                                    border-width: 1px;\n"
 "                                    border-radius: 15px;\n"
-"                                    font: 75 13pt \"Verdana\";\n"
+"                                    font: 75 8pt \"Verdana\";\n"
 "                                    border: none;\n"
 "                                        }\n"
 "                    QPushButton:hover {\n"
@@ -84,13 +84,14 @@ class Ui_MainWindow(object):
         self.pushButton_txt.setObjectName("pushButton_txt")
         self.label_pdf_pfile = QtWidgets.QLabel(self.frame)
         self.label_pdf_pfile.setGeometry(QtCore.QRect(20, 90, 101, 16))
-        self.label_pdf_pfile.setStyleSheet("font: 75 13pt \"Verdana\";\n"
+        self.label_pdf_pfile.setStyleSheet("font: 75 8pt \"Verdana\";\n"
 "font-weight: bold;\n"
 "border: none")
         self.label_pdf_pfile.setObjectName("label_pdf_pfile")
         self.textBox1 = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.textBox1.setGeometry(QtCore.QRect(10, 320, 561, 271))
-        self.textBox1.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.textBox1.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font: 8pt \"Verdana\";")
         self.textBox1.setObjectName("textBox1")
         self.group_type = QtWidgets.QGroupBox(self.centralwidget)
         self.group_type.setGeometry(QtCore.QRect(10, 10, 561, 91))
@@ -101,7 +102,7 @@ class Ui_MainWindow(object):
         self.group_type.setSizePolicy(sizePolicy)
         self.group_type.setMaximumSize(QtCore.QSize(1920, 100))
         self.group_type.setSizeIncrement(QtCore.QSize(0, 0))
-        self.group_type.setStyleSheet("font: 75 13pt \"Verdana\";\n"
+        self.group_type.setStyleSheet("font: 75 9pt \"Verdana\";\n"
 "font-weight: bold;\n"
 "border: 3px solid white;\n"
 "\n"
@@ -110,13 +111,13 @@ class Ui_MainWindow(object):
         self.group_type.setObjectName("group_type")
         self.radioButton_liq = QtWidgets.QRadioButton(self.group_type)
         self.radioButton_liq.setGeometry(QtCore.QRect(130, 40, 121, 21))
-        self.radioButton_liq.setStyleSheet("font: 13pt \"Verdana\";\n"
+        self.radioButton_liq.setStyleSheet("font: 75 8pt \"Verdana\";\n"
 "border: none;\n"
 "")
         self.radioButton_liq.setObjectName("radioButton_liq")
         self.radioButton_vol = QtWidgets.QRadioButton(self.group_type)
         self.radioButton_vol.setGeometry(QtCore.QRect(350, 40, 161, 21))
-        self.radioButton_vol.setStyleSheet("font: 13pt \"Verdana\";\n"
+        self.radioButton_vol.setStyleSheet("font: 75 8pt \"Verdana\";\n"
 "border: none;\n"
 "\n"
 "")
@@ -142,7 +143,7 @@ class Ui_MainWindow(object):
 "                                    background-color: rgb(255, 138, 36);\n"
 "                                    border-width: 5px;\n"
 "                                    border-radius: 15px;\n"
-"                                    font: 75 15pt \"Verdana\";\n"
+"                                    font: 75 12pt \"Verdana\";\n"
 "                                    border-color: black;\n"
 "                                    }\n"
 "QPushButton:hover {\n"
@@ -167,7 +168,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 580, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 572, 22))
         self.menubar.setObjectName("menubar")
         self.menuArchivo = QtWidgets.QMenu(self.menubar)
         self.menuArchivo.setObjectName("menuArchivo")
