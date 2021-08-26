@@ -2,6 +2,8 @@ import sys
 from txt2pdf import Ui_MainWindow
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import qApp
+from lib import *
+
 
 
 class mainWindow(QtWidgets.QMainWindow):
@@ -17,12 +19,14 @@ class mainWindow(QtWidgets.QMainWindow):
         self.ui.radioButton_vol.toggled.connect(self.onClicked)
         self.ui.actionSalir.triggered.connect(qApp.quit)
     def openFileNameDialog(self):
+        global txtfiles
+        txtfiles = []
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
+        txtfiles, _ = QtWidgets.QFileDialog.getOpenFileNames(self, "QFileDialog.getOpenFileNames()", "",
                                                   "Archivos de Texto (*.txt);;Todos los Archivos (*)")
-        if fileName:
-            self.ui.lineEdit_txt_path.setText(fileName)
+        if txtfiles:
+            self.ui.lineEdit_txt_path.setText(';'.join(txtfiles))
 
     def saveFileDialog(self):
         fileName  = QtWidgets.QFileDialog.getExistingDirectory(self, "Seleccione la carpeta de destino...")
@@ -40,25 +44,25 @@ class mainWindow(QtWidgets.QMainWindow):
 
     def goButton(self):
         from os import path
+        count = 0
         pdf_path = self.ui.lineEdit_pdf_path.text()
-        txt_path = self.ui.lineEdit_txt_path.text()
+        txt_path = self.ui.lineEdit_txt_path.text().split(';')
         if self.ui.radioButton_liq.isChecked():
-            if path.isdir(pdf_path) is True and path.isfile(txt_path) is True:
+            if check_dir(pdf_path) is True and check_files(txt_path) is True:
                 self.ui.textBox1.clear()
-                from lib import doPDF
                 output = doPDF(txt_path,pdf_path)
                 for i in output:
                     self.ui.textBox1.appendPlainText(i)
-
-
+                    count += 1
+                self.ui.textBox1.appendPlainText('\n{0} documentos creados.'.format(count))
         if self.ui.radioButton_vol.isChecked():
-            if path.isdir(pdf_path) is True and path.isfile(txt_path) is True:
+            if check_dir(pdf_path) is True and check_files(txt_path) is True:
                 self.ui.textBox1.clear()
-                from lib import doVolantes
                 output = doVolantes(txt_path, pdf_path)
                 for i in output:
                     self.ui.textBox1.appendPlainText(i)
-
+                    count += 1
+                self.ui.textBox1.appendPlainText('\n{0} documentos creados.'.format(count))
 
 
 

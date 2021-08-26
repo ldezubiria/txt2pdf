@@ -1,6 +1,9 @@
-
+from pathlib import Path
 import re
 import sqlite3
+from os import path
+import itertools
+import os
 
 
 def liqu_read_cedula(source_d):
@@ -31,41 +34,6 @@ def liquidaciones_pdf(source, pdf_file_name):
 
     pdf.output(pdf_file_name, 'F')
 
-
-def doPDF(source_path, dest_path):
-    from pathlib import Path
-    with open(source_path, 'r', encoding="latin-1") as original:
-        archivo_txt = original.readlines()
-
-    last_line = ''
-    pages = []
-    temp_page = []
-    cedula = ''
-    out = []
-    for each_line in archivo_txt:  # start reading
-        if each_line == last_line:  # skip repeated lines
-            continue
-        else:
-            fin_pagina = re.findall('(Revisado Por)', each_line)  # find EOP in line
-            temp_page.append(each_line)  # add line to current page
-            if fin_pagina:
-                ced = liqu_read_cedula(temp_page)  # End_Of_Page found, find cedula in current page
-                if not ced:
-                    pages.append(temp_page)
-                    filename = cedula + ".pdf"
-                    pdf_file = f"{dest_path}/{filename}"
-                    print(pdf_file)
-                    liquidaciones_pdf(pages, pdf_file)
-                    pages = []
-                    temp_page = []
-                    out.append(filename)
-                else:
-                    cedula = ced
-                    pages.append(temp_page)
-                    temp_page = []
-            else:
-                last_line = each_line
-    return out
 
 def volantes_pdf(source_lines, pdf_file):
     """escribe la lista source a un archivo outfile"""
@@ -99,43 +67,87 @@ def read_cedula(source_d, output='single'):
     return xy
 
 
-def doVolantes(open_file_path,save_file_path):
-    # Read input txt File
-    with open(open_file_path, 'r', encoding="latin-1") as fileh:
-        contents = fileh.readlines()
+def doPDF(source_path, dest_path):
+    archivo_txt = []
+    for i in source_path:
+        with open(i, 'r', encoding="latin-1") as original:
+            archivo = original.readlines()
+            archivo_txt.extend(archivo)
+    last_line = ''
+    pages = []
+    temp_page = []
+    cedula = ''
+    out = []
+    numero = 0
+    for each_line in archivo_txt:  # start reading
+        if each_line == last_line:  # skip repeated lines
+            continue
+        else:
+            fin_pagina = re.findall('(Revisado Por)', each_line)  # find EOP in line
+            temp_page.append(each_line)  # add line to current page
+            if fin_pagina:
+                ced = liqu_read_cedula(temp_page)  # End_Of_Page found, find cedula in current page
+                if not ced:
+                    pages.append(temp_page)
+                    filename = cedula + ".pdf"
+                    pdf_file = unique_file(f"{dest_path}/{filename}")
+                    print(pdf_file)
+                    liquidaciones_pdf(pages, pdf_file)
+                    numero += 1
+                    pages = []
+                    temp_page = []
+                    out.append(filename)
+                else:
+                    cedula = ced
+                    pages.append(temp_page)
+                    temp_page = []
+            else:
+                last_line = each_line
+    print('\n{0} documentos creados.'.format(numero))
+    return out
+
+
+def doVolantes(filepaths,save_file_path):
+    # Read all input txt Files and merge the contents into a single list (result)
+    result = []
+    for i in filepaths:
+        with open(i, 'r', encoding="latin-1") as fileh:
+            contents = fileh.readlines()
+            result.extend(contents)
 
     # add EOF marker  - Esto indica el final del archivo
-    contents.append("PAGEBREAK\n")
+    result.append("PAGEBREAK\n")
 
     # remove duplicate lines + create nuevo_plano.txt
     unique = []
-    cedula = []
-    pb = []
+
     with open('../nuevo_plano.txt', 'w') as nuevo_plano:
 
-        for x in range(len(contents)):
-            if contents[x].startswith('==========') and x > 5:
+        for x in range(len(result)):
+            if result[x].startswith('==========') and x > 5:
                 nuevo_plano.write("PAGEBREAK\n")
 
-            unique.append(contents[x])
-            nuevo_plano.write(contents[x])
+            unique.append(result[x])
+            nuevo_plano.write(result[x])
 
     # write individual pdfs
     doc = []
     out = []
+    numero = 0
     for line in open('../nuevo_plano.txt', 'r'):
         pp = re.findall('^(PAGEBREAK)', line)
         if not pp:
             doc.append(line)
         else:
-            filename = read_cedula(doc,output='single') + ".pdf"
-            new_pdf = (f'{save_file_path}/{filename}')
+            filename = read_cedula(doc)
+            new_pdf = unique_file(f'{save_file_path}/{filename}')
+            print(new_pdf)
             volantes_pdf(doc, new_pdf)
+            numero += 1
+            out.append(new_pdf)
             doc = []
-            out.append(filename)
-            print(filename)
+    print('{0} documentos creados.'.format(numero))
     return out
-
 
 def read_nombres(source_d):
     """extract nombres from list of lines. output is a list"""
@@ -181,3 +193,25 @@ def read_empresa(source_d):
             emp = 'personal_st'
             return emp
     return -1
+
+def check_dir(dir):
+
+    return path.isdir(dir)
+
+
+def check_files(filepaths):
+    for i in filepaths:
+        if path.isfile(i) is False:
+            print('{0}} is not a valid file'.format(i))
+            return False
+        else:
+            print(i)
+    return True
+
+def unique_file(basename):
+    #Check for existing filename and rename accordingly
+    actualname = "{0}.pdf".format(basename)
+    c = itertools.count(1)
+    while os.path.exists(actualname):
+        actualname = "{0} ({1}).pdf".format(basename, next(c))
+    return str(actualname)
