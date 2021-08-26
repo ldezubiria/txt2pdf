@@ -27,7 +27,7 @@ def liquidaciones_pdf(source, pdf_file_name):
         pdf.add_page()
         pdf.set_margins(0.25, 0.25)
         pdf.set_auto_page_break(False, margin=0.25)
-        pdf.set_font('Courier', '', 9)
+        pdf.set_font('Courier', '', 7)
         pdf.set_xy(0.25, 0.25)
         for ii in i:
             pdf.write(font_height, ii)
@@ -89,7 +89,7 @@ def doPDF(source_path, dest_path):
                 ced = liqu_read_cedula(temp_page)  # End_Of_Page found, find cedula in current page
                 if not ced:
                     pages.append(temp_page)
-                    filename = cedula + ".pdf"
+                    filename = cedula
                     pdf_file = unique_file(f"{dest_path}/{filename}")
                     print(pdf_file)
                     liquidaciones_pdf(pages, pdf_file)
@@ -202,7 +202,6 @@ def check_dir(dir):
 def check_files(filepaths):
     for i in filepaths:
         if path.isfile(i) is False:
-            print('{0}} is not a valid file'.format(i))
             return False
         else:
             print(i)

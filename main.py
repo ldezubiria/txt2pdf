@@ -43,7 +43,7 @@ class mainWindow(QtWidgets.QMainWindow):
         sys.exit()
 
     def goButton(self):
-        from os import path
+        self.ui.textBox1.clear()
         count = 0
         pdf_path = self.ui.lineEdit_pdf_path.text()
         txt_path = self.ui.lineEdit_txt_path.text().split(';')
@@ -55,6 +55,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     self.ui.textBox1.appendPlainText(i)
                     count += 1
                 self.ui.textBox1.appendPlainText('\n{0} documentos creados.'.format(count))
+            if check_files(txt_path) is False:
+                self.ui.textBox1.appendPlainText('Seleccione archivo(s) TXT')
+            if check_dir(pdf_path) is False:
+                self.ui.textBox1.appendPlainText('La ruta de destino no es válida.')
         if self.ui.radioButton_vol.isChecked():
             if check_dir(pdf_path) is True and check_files(txt_path) is True:
                 self.ui.textBox1.clear()
@@ -63,6 +67,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     self.ui.textBox1.appendPlainText(i)
                     count += 1
                 self.ui.textBox1.appendPlainText('\n{0} documentos creados.'.format(count))
+            if check_files(txt_path) is False:
+                self.ui.textBox1.appendPlainText('Seleccione archivo(s) TXT')
+            if check_dir(pdf_path) is False:
+                self.ui.textBox1.appendPlainText('La ruta de destino no es válida.')
 
 
 
