@@ -67,7 +67,7 @@ def read_cedula(source_d, output='single'):
     return xy
 
 
-def doPDF(source_path, dest_path):
+def doLiquid(source_path, dest_path):
     archivo_txt = []
     for i in source_path:
         with open(i, 'r', encoding="latin-1") as original:
@@ -90,7 +90,7 @@ def doPDF(source_path, dest_path):
                 if not ced:
                     pages.append(temp_page)
                     filename = cedula
-                    pdf_file = unique_file(f"{dest_path}/{filename}")
+                    pdf_file = unique_file("{dest_path}/{filename}".format(dest_path=dest_path, filename=filename))
                     print(pdf_file)
                     liquidaciones_pdf(pages, pdf_file)
                     numero += 1
@@ -115,9 +115,9 @@ def doVolantes(filepaths,save_file_path):
             contents = fileh.readlines()
             result.extend(contents)
 
-    # add EOF marker  - Esto indica el final del archivo
-    result.append("PAGEBREAK\n")
-
+        # add EOF marker  - Esto indica el final del archivo
+        result.append("PAGEBREAK\n")
+    print(result)
     # remove duplicate lines + create nuevo_plano.txt
     unique = []
 
