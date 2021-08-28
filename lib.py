@@ -91,19 +91,17 @@ def doLiquid(source_path, dest_path):
                     pages.append(temp_page)
                     filename = cedula
                     pdf_file = unique_file("{dest_path}/{filename}".format(dest_path=dest_path, filename=filename))
-                    print(pdf_file)
                     liquidaciones_pdf(pages, pdf_file)
                     numero += 1
                     pages = []
                     temp_page = []
-                    out.append(filename)
+                    out.append(pdf_file)
                 else:
                     cedula = ced
                     pages.append(temp_page)
                     temp_page = []
             else:
                 last_line = each_line
-    print('\n{0} documentos creados.'.format(numero))
     return out
 
 
@@ -117,7 +115,6 @@ def doVolantes(filepaths,save_file_path):
 
         # add EOF marker  - Esto indica el final del archivo
         result.append("PAGEBREAK\n")
-    print(result)
     # remove duplicate lines + create nuevo_plano.txt
     unique = []
 
@@ -141,12 +138,10 @@ def doVolantes(filepaths,save_file_path):
         else:
             filename = read_cedula(doc)
             new_pdf = unique_file(f'{save_file_path}/{filename}')
-            print(new_pdf)
             volantes_pdf(doc, new_pdf)
             numero += 1
             out.append(new_pdf)
             doc = []
-    print('{0} documentos creados.'.format(numero))
     return out
 
 def read_nombres(source_d):
@@ -203,8 +198,6 @@ def check_files(filepaths):
     for i in filepaths:
         if path.isfile(i) is False:
             return False
-        else:
-            print(i)
     return True
 
 def unique_file(basename):
