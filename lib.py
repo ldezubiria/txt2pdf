@@ -113,17 +113,14 @@ def doVolantes(filepaths,save_file_path):
             contents = fileh.readlines()
             result.extend(contents)
 
-        # add EOF marker  - Esto indica el final del archivo
-        result.append("PAGEBREAK\n")
+    # add EOF marker  - Esto indica el final del archivo
+    result.append("PAGEBREAK\n")
     # remove duplicate lines + create nuevo_plano.txt
     unique = []
-
-    with open('../nuevo_plano.txt', 'w') as nuevo_plano:
-
+    with open('./nuevo_plano.txt', 'w') as nuevo_plano:
         for x in range(len(result)):
             if result[x].startswith('==========') and x > 5:
                 nuevo_plano.write("PAGEBREAK\n")
-
             unique.append(result[x])
             nuevo_plano.write(result[x])
 
@@ -131,7 +128,7 @@ def doVolantes(filepaths,save_file_path):
     doc = []
     out = []
     numero = 0
-    for line in open('../nuevo_plano.txt', 'r'):
+    for line in open('./nuevo_plano.txt', 'r'):
         pp = re.findall('^(PAGEBREAK)', line)
         if not pp:
             doc.append(line)
